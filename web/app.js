@@ -2,9 +2,6 @@
   "use strict";
 
   const elements = {
-    fileInput: document.querySelector("#file-input"),
-    openButton: document.querySelector("#open-button"),
-    dropZone: document.querySelector("#drop-zone"),
     puzzleList: document.querySelector("#puzzle-list"),
     libraryStatus: document.querySelector("#library-status"),
     welcome: document.querySelector("#welcome"),
@@ -46,11 +43,6 @@
     toastTimeout = window.setTimeout(() => {
       elements.toast.classList.remove("visible");
     }, 2800);
-  }
-
-  function openFilePicker() {
-    elements.fileInput.value = "";
-    elements.fileInput.click();
   }
 
   function focusForTyping() {
@@ -546,13 +538,6 @@
     }
   }
 
-  async function loadFile(file) {
-    if (!file) {
-      return;
-    }
-    await loadPuzzleBuffer(await file.arrayBuffer());
-  }
-
   async function loadPuzzleUrl(url) {
     try {
       const response = await fetch(url);
@@ -708,13 +693,6 @@
     }
   }
 
-  for (const opener of [
-    elements.openButton,
-    elements.dropZone,
-  ]) {
-    opener.addEventListener("click", openFilePicker);
-  }
-  elements.fileInput.addEventListener("change", () => loadFile(elements.fileInput.files[0]));
   elements.checkButton.addEventListener("click", () => {
     checkPuzzle();
     focusForTyping();
@@ -733,20 +711,5 @@
   document.addEventListener("keydown", handleKeydown);
   window.addEventListener("beforeunload", saveProgress);
 
-  for (const eventName of ["dragenter", "dragover"]) {
-    elements.dropZone.addEventListener(eventName, (event) => {
-      event.preventDefault();
-      elements.dropZone.classList.add("is-dragging");
-    });
-  }
-  for (const eventName of ["dragleave", "drop"]) {
-    elements.dropZone.addEventListener(eventName, (event) => {
-      event.preventDefault();
-      elements.dropZone.classList.remove("is-dragging");
-    });
-  }
-  elements.dropZone.addEventListener("drop", (event) => {
-    loadFile(event.dataTransfer.files[0]);
-  });
   loadLibrary();
 })();

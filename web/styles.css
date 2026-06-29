@@ -56,7 +56,7 @@ button {
   background: var(--paper);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
   z-index: 10;
 }
@@ -91,17 +91,11 @@ button {
 }
 
 .button:focus-visible,
-.drop-zone:focus-visible,
 .puzzle-card:focus-visible,
 .cell:focus-visible,
 .clue-button:focus-visible {
   outline: 3px solid #2674b8;
   outline-offset: 3px;
-}
-
-.button-dark {
-  background: var(--ink);
-  color: white;
 }
 
 .button-quiet {
@@ -216,75 +210,6 @@ button {
 
 .puzzle-card-action::after {
   content: " →";
-}
-
-.open-your-own {
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
-  align-items: center;
-  gap: 24px;
-}
-
-.open-your-own h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 24px;
-  letter-spacing: -0.025em;
-}
-
-.open-your-own p {
-  margin: 7px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.drop-zone {
-  width: 100%;
-  min-height: 72px;
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--panel);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    border-color 150ms ease,
-    background 150ms ease;
-}
-
-.drop-zone:hover,
-.drop-zone.is-dragging {
-  border-color: var(--ink);
-  background: #fff;
-}
-
-.drop-copy {
-  display: grid;
-  gap: 3px;
-}
-
-.drop-copy span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.drop-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--yellow);
-  display: grid;
-  place-items: center;
-  flex: none;
-  font-size: 23px;
-  line-height: 1;
 }
 
 .solver {
@@ -565,15 +490,6 @@ button {
     align-items: baseline;
     flex-direction: row;
     gap: 12px;
-  }
-
-  .open-your-own {
-    padding-inline: 0;
-    grid-template-columns: 1fr;
-  }
-
-  .drop-zone {
-    min-height: 68px;
   }
 
   .solver {

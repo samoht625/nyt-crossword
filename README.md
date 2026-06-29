@@ -26,9 +26,9 @@ Preview the portfolio and browser solver:
 python3 -m http.server 8000 --directory web
 ```
 
-Open http://localhost:8000. The site can solve either bundled puzzle or any
-standard Across Lite `.puz` selected from the device. Solving happens entirely
-in the browser, and progress is stored locally.
+Open http://localhost:8000. The site includes a browser solver for the bundled
+puzzles. Solving happens entirely in the browser, and progress is stored
+locally.
 
 ## Repository layout
 

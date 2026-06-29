@@ -9,7 +9,7 @@
     <meta name="color-scheme" content="light" />
     <meta
       name="description"
-      content="Play a crossword or open a .puz file in your browser."
+      content="Play crosswords in your browser."
     />
     <title>Crosswords</title>
     <link rel="stylesheet" href="styles.css" />
@@ -17,10 +17,6 @@
   <body>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Crosswords home">Crosswords</a>
-      <button class="button button-dark" id="open-button" type="button">
-        Open .puz
-      </button>
-      <input id="file-input" type="file" accept=".puz,application/x-crossword" hidden />
     </header>
 
     <main>
@@ -31,19 +27,6 @@
             <p id="library-status" aria-live="polite">Loading puzzles…</p>
           </div>
           <div class="puzzle-cards" id="puzzle-list"></div>
-        </section>
-        <section class="open-your-own" aria-labelledby="open-your-own-title">
-          <div>
-            <h2 id="open-your-own-title">Open a .puz file</h2>
-            <p>Choose one from this device. Nothing is uploaded.</p>
-          </div>
-          <button class="drop-zone" id="drop-zone" type="button">
-            <span class="drop-icon" aria-hidden="true">+</span>
-            <span class="drop-copy">
-              <strong>Choose a .puz file</strong>
-              <span>or drop one here</span>
-            </span>
-          </button>
         </section>
       </section>
 
