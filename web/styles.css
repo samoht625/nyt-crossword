@@ -81,13 +81,15 @@ button {
   font-weight: 700;
   cursor: pointer;
   transition:
-    transform 120ms ease,
-    background 120ms ease,
+    border-color 120ms ease,
+    background-color 120ms ease,
     color 120ms ease;
 }
 
-.button:hover {
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .button:hover {
+    border-color: var(--ink);
+  }
 }
 
 .button:focus-visible,
@@ -162,7 +164,7 @@ button {
 .puzzle-card {
   width: 100%;
   min-height: 82px;
-  padding: 16px 4px;
+  padding: 16px 12px;
   border: 0;
   border-bottom: 1px solid var(--line);
   border-radius: 0;
@@ -174,13 +176,15 @@ button {
   text-align: left;
   cursor: pointer;
   transition:
-    background 120ms ease,
-    padding 120ms ease;
+    background-color 120ms ease,
+    box-shadow 120ms ease;
 }
 
-.puzzle-card:hover {
-  padding-inline: 12px;
-  background: var(--panel);
+@media (hover: hover) {
+  .puzzle-card:hover {
+    background: var(--panel);
+    box-shadow: inset 3px 0 0 var(--yellow);
+  }
 }
 
 .puzzle-card-copy {
@@ -611,11 +615,7 @@ button {
 
   .puzzle-card {
     min-height: 76px;
-    padding: 14px 2px;
-  }
-
-  .puzzle-card:hover {
-    padding-inline: 8px;
+    padding: 14px 8px;
   }
 
   .puzzle-card h2 {
