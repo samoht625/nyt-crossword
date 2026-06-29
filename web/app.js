@@ -4,7 +4,6 @@
   const elements = {
     fileInput: document.querySelector("#file-input"),
     openButton: document.querySelector("#open-button"),
-    welcomeOpen: document.querySelector("#welcome-open"),
     dropZone: document.querySelector("#drop-zone"),
     puzzleList: document.querySelector("#puzzle-list"),
     libraryStatus: document.querySelector("#library-status"),
@@ -24,6 +23,17 @@
     keyboardInput: document.querySelector("#keyboard-input"),
     toast: document.querySelector("#toast"),
   };
+
+  const canonicalHomePath = window.location.pathname.endsWith("/index.html")
+    ? window.location.pathname.slice(0, -"index.html".length) || "/"
+    : window.location.pathname;
+  if (canonicalHomePath !== window.location.pathname) {
+    window.history.replaceState(
+      null,
+      "",
+      `${canonicalHomePath}${window.location.search}${window.location.hash}`,
+    );
+  }
 
   let state = null;
   let timerInterval = null;
@@ -562,7 +572,7 @@
       state.running = false;
       saveProgress();
     }
-    window.history.replaceState(null, "", window.location.pathname);
+    window.history.replaceState(null, "", canonicalHomePath);
     elements.keyboardInput.blur();
     elements.keyboardInput.value = "";
     document.body.classList.remove("is-solving");
@@ -585,20 +595,29 @@
       const fragment = document.createDocumentFragment();
       for (const puzzle of puzzles) {
         const card = document.createElement("button");
+        const copy = document.createElement("span");
         card.className = "puzzle-card";
         card.type = "button";
+        copy.className = "puzzle-card-copy";
 
-        const title = document.createElement("h3");
+        const title = document.createElement("h2");
         title.textContent = puzzle.title;
-        const description = document.createElement("p");
-        description.textContent = puzzle.description;
         const meta = document.createElement("span");
         meta.className = "puzzle-meta";
         meta.textContent = [puzzle.difficulty, puzzle.size].filter(Boolean).join(" · ");
-        card.append(title, description, meta);
+        const action = document.createElement("span");
+        action.className = "puzzle-card-action";
+        action.textContent = "Play";
+        action.setAttribute("aria-hidden", "true");
+        copy.append(title, meta);
+        card.append(copy, action);
+        card.setAttribute(
+          "aria-label",
+          ["Play", puzzle.title, meta.textContent].filter(Boolean).join(", "),
+        );
         card.addEventListener("click", () => {
           const query = new URLSearchParams({ puzzle: puzzle.slug });
-          window.history.replaceState(null, "", `?${query}`);
+          window.history.replaceState(null, "", `${canonicalHomePath}?${query}`);
           loadPuzzleUrl(puzzle.file);
         });
         fragment.append(card);
@@ -691,7 +710,6 @@
 
   for (const opener of [
     elements.openButton,
-    elements.welcomeOpen,
     elements.dropZone,
   ]) {
     opener.addEventListener("click", openFilePicker);
