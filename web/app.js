@@ -38,13 +38,29 @@
     }
   }
 
+  function resolveHomePath(pathname = window.location.pathname) {
+    const puzzleMatch = pathname.match(/^(.*\/)?puzzle\/([^/]+)\/?$/);
+    if (puzzleMatch) {
+      const home = puzzleMatch[1] || "/";
+      return home === "/" || home.endsWith("/") ? home : `${home}/`;
+    }
+    if (pathname.endsWith("/index.html")) {
+      const home = pathname.slice(0, -"index.html".length) || "/";
+      return home === "/" || home.endsWith("/") ? home : `${home}/`;
+    }
+    if (pathname === "/" || pathname.endsWith("/")) {
+      return pathname || "/";
+    }
+    return `${pathname}/`;
+  }
+
   const initialRoute = puzzleRoute();
-  const canonicalHomePath = initialRoute
-    ? initialRoute.homePath
-    : window.location.pathname.endsWith("/index.html")
-      ? window.location.pathname.slice(0, -"index.html".length) || "/"
-      : window.location.pathname;
-  if (!initialRoute && canonicalHomePath !== window.location.pathname) {
+  const canonicalHomePath =
+    window.__HOME_PATH__ || resolveHomePath(window.location.pathname);
+  const normalizedPath =
+    window.location.pathname.replace(/\/$/, "") || "/";
+  const normalizedHome = canonicalHomePath.replace(/\/$/, "") || "/";
+  if (!initialRoute && normalizedHome !== normalizedPath) {
     window.history.replaceState(
       null,
       "",

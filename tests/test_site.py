@@ -7,6 +7,11 @@ import puz
 ROOT = Path(__file__).parents[1]
 
 
+def test_spa_fallback_matches_index() -> None:
+    web = ROOT / "web"
+    assert (web / "404.html").read_text() == (web / "index.html").read_text()
+
+
 def test_site_manifest_points_to_valid_puzzles() -> None:
     web = ROOT / "web"
     manifest = json.loads((web / "puzzles.json").read_text())
