@@ -13,7 +13,7 @@ The repository currently includes two 15×15 puzzles:
 Install [uv](https://docs.astral.sh/uv/), then:
 
 ```sh
-uv sync --extra dev
+uv sync --extra dev --extra construction
 uv run pytest
 uv run crossword-validate puzzles/ai-generated/puzzle.json
 uv run crossword-export puzzles/ai-generated/puzzle.json \

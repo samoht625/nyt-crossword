@@ -45,6 +45,7 @@
 
   function focusForTyping() {
     if (window.matchMedia("(pointer: coarse)").matches) {
+      elements.keyboardInput.value = "";
       elements.keyboardInput.focus({ preventScroll: true });
     } else {
       elements.grid.focus({ preventScroll: true });
@@ -203,8 +204,10 @@
 
     createClueList(puzzle.across, elements.acrossClues);
     createClueList(puzzle.down, elements.downClues);
+    document.body.classList.add("is-solving");
     elements.welcome.hidden = true;
     elements.solver.hidden = false;
+    window.scrollTo({ top: 0, behavior: "auto" });
     updateGrid();
   }
 
@@ -364,6 +367,10 @@
   function moveSpatial(rowChange, columnChange, direction) {
     const { puzzle } = state;
     const selected = puzzle.cells[state.selected];
+    if (state.direction !== direction && entryForCell(state.selected, direction)) {
+      selectCell(state.selected, direction);
+      return;
+    }
     let row = selected.row + rowChange;
     let column = selected.column + columnChange;
     while (row >= 0 && row < puzzle.height && column >= 0 && column < puzzle.width) {
@@ -556,6 +563,9 @@
       saveProgress();
     }
     window.history.replaceState(null, "", window.location.pathname);
+    elements.keyboardInput.blur();
+    elements.keyboardInput.value = "";
+    document.body.classList.remove("is-solving");
     elements.solver.hidden = true;
     elements.welcome.hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -613,7 +623,14 @@
   }
 
   function handleKeydown(event) {
-    if (!state || elements.solver.hidden || event.metaKey || event.ctrlKey || event.altKey) {
+    if (
+      !state ||
+      elements.solver.hidden ||
+      event.isComposing ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey
+    ) {
       return;
     }
 
@@ -647,6 +664,31 @@
     }
   }
 
+  function handleTextInput() {
+    const letters = elements.keyboardInput.value.toUpperCase().match(/[A-Z]/g) || [];
+    elements.keyboardInput.value = "";
+    if (!state || elements.solver.hidden) {
+      return;
+    }
+    for (const letter of letters) {
+      enterLetter(letter);
+    }
+  }
+
+  function handleBeforeInput(event) {
+    if (!state || elements.solver.hidden) {
+      return;
+    }
+    if (event.inputType.startsWith("delete")) {
+      event.preventDefault();
+      elements.keyboardInput.value = "";
+      eraseLetter();
+    } else if (event.inputType === "insertLineBreak") {
+      event.preventDefault();
+      switchDirection();
+    }
+  }
+
   for (const opener of [
     elements.openButton,
     elements.welcomeOpen,
@@ -655,10 +697,21 @@
     opener.addEventListener("click", openFilePicker);
   }
   elements.fileInput.addEventListener("change", () => loadFile(elements.fileInput.files[0]));
-  elements.checkButton.addEventListener("click", checkPuzzle);
-  elements.revealButton.addEventListener("click", revealWord);
-  elements.resetButton.addEventListener("click", resetPuzzle);
+  elements.checkButton.addEventListener("click", () => {
+    checkPuzzle();
+    focusForTyping();
+  });
+  elements.revealButton.addEventListener("click", () => {
+    revealWord();
+    focusForTyping();
+  });
+  elements.resetButton.addEventListener("click", () => {
+    resetPuzzle();
+    focusForTyping();
+  });
   elements.galleryButton.addEventListener("click", showGallery);
+  elements.keyboardInput.addEventListener("beforeinput", handleBeforeInput);
+  elements.keyboardInput.addEventListener("input", handleTextInput);
   document.addEventListener("keydown", handleKeydown);
   window.addEventListener("beforeunload", saveProgress);
 
