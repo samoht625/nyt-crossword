@@ -31,6 +31,7 @@ crossword-export = "crossword_tools.export:main"
 crossword-construct = "crossword_tools.construct:main"
 crossword-fill = "crossword_tools.fill:main"
 crossword-fill-blacksquare = "crossword_tools.fill_blacksquare:main"
+crossword-serve = "scripts.serve:main"
 
 [build-system]
 requires = ["setuptools>=77"]

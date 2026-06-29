@@ -3,10 +3,11 @@
 Reusable tools for constructing, validating, and exporting American-style
 crosswords, plus a static site for puzzles by Thomas Carriero.
 
-The repository currently includes two 15×15 puzzles:
+The repository currently includes three puzzles:
 
 - **Autocomplete** — reconstructed from the constructor's original solver PDF
 - **AI Generated** — familiar expressions edited to literally generate `AI`
+- **Background Check** — a 21×21 Sunday-style puzzle about agents in the background
 
 ## Quick start
 
@@ -23,7 +24,7 @@ uv run crossword-export puzzles/ai-generated/puzzle.json \
 Preview the portfolio and browser solver:
 
 ```sh
-python3 -m http.server 8000 --directory web
+uv run crossword-serve
 ```
 
 Open http://localhost:8000. The site includes a browser solver for the bundled

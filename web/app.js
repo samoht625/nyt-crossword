@@ -21,10 +21,28 @@
     toast: document.querySelector("#toast"),
   };
 
-  const canonicalHomePath = window.location.pathname.endsWith("/index.html")
-    ? window.location.pathname.slice(0, -"index.html".length) || "/"
-    : window.location.pathname;
-  if (canonicalHomePath !== window.location.pathname) {
+  function puzzleRoute(pathname = window.location.pathname) {
+    const match = pathname.match(/^(.*\/)?puzzle\/([^/]+)\/?$/);
+    if (!match) {
+      return null;
+    }
+    try {
+      return {
+        homePath: match[1] || "/",
+        slug: decodeURIComponent(match[2]),
+      };
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  const initialRoute = puzzleRoute();
+  const canonicalHomePath = initialRoute
+    ? initialRoute.homePath
+    : window.location.pathname.endsWith("/index.html")
+      ? window.location.pathname.slice(0, -"index.html".length) || "/"
+      : window.location.pathname;
+  if (!initialRoute && canonicalHomePath !== window.location.pathname) {
     window.history.replaceState(
       null,
       "",
@@ -32,7 +50,17 @@
     );
   }
 
+  function homeAssetPath(path) {
+    return `${canonicalHomePath}${path.replace(/^\/+/, "")}`;
+  }
+
+  function puzzlePath(slug) {
+    return `${canonicalHomePath}puzzle/${encodeURIComponent(slug)}`;
+  }
+
   let state = null;
+  let library = [];
+  let activeSlug = null;
   let timerInterval = null;
   let toastTimeout = null;
 
@@ -550,14 +578,35 @@
     }
   }
 
-  function showGallery() {
+  async function openPuzzle(puzzle, historyMode = null) {
+    activeSlug = puzzle.slug;
+    if (historyMode === "push") {
+      window.history.pushState(
+        { fromGallery: true, view: "puzzle" },
+        "",
+        puzzlePath(puzzle.slug),
+      );
+    } else if (historyMode === "replace") {
+      window.history.replaceState(
+        { view: "puzzle" },
+        "",
+        puzzlePath(puzzle.slug),
+      );
+    }
+    await loadPuzzleUrl(homeAssetPath(puzzle.file));
+  }
+
+  function showGallery(updateHistory = true) {
     if (state) {
       state.elapsedBase = elapsedSeconds();
       state.timerStartedAt = null;
       state.running = false;
       saveProgress();
     }
-    window.history.replaceState(null, "", canonicalHomePath);
+    activeSlug = null;
+    if (updateHistory) {
+      window.history.replaceState(null, "", canonicalHomePath);
+    }
     elements.keyboardInput.blur();
     elements.keyboardInput.value = "";
     document.body.classList.remove("is-solving");
@@ -566,9 +615,17 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function goToGallery() {
+    if (window.history.state?.fromGallery) {
+      window.history.back();
+    } else {
+      showGallery();
+    }
+  }
+
   async function loadLibrary() {
     try {
-      const response = await fetch("puzzles.json");
+      const response = await fetch(homeAssetPath("puzzles.json"));
       if (!response.ok) {
         throw new Error(`Could not load puzzle library (${response.status}).`);
       }
@@ -576,6 +633,7 @@
       if (!Array.isArray(puzzles) || !puzzles.length) {
         throw new Error("No published puzzles are available.");
       }
+      library = puzzles;
 
       const fragment = document.createDocumentFragment();
       for (const puzzle of puzzles) {
@@ -601,9 +659,7 @@
           ["Play", puzzle.title, meta.textContent].filter(Boolean).join(", "),
         );
         card.addEventListener("click", () => {
-          const query = new URLSearchParams({ puzzle: puzzle.slug });
-          window.history.replaceState(null, "", `${canonicalHomePath}?${query}`);
-          loadPuzzleUrl(puzzle.file);
+          openPuzzle(puzzle, "push");
         });
         fragment.append(card);
       }
@@ -611,10 +667,12 @@
       elements.puzzleList.replaceChildren(fragment);
       elements.libraryStatus.textContent = `${puzzles.length} puzzles`;
 
-      const requestedSlug = new URLSearchParams(window.location.search).get("puzzle");
+      const routeSlug = puzzleRoute()?.slug;
+      const requestedSlug =
+        routeSlug || new URLSearchParams(window.location.search).get("puzzle");
       const requested = puzzles.find((puzzle) => puzzle.slug === requestedSlug);
       if (requested) {
-        await loadPuzzleUrl(requested.file);
+        await openPuzzle(requested, routeSlug ? null : "replace");
       }
     } catch (error) {
       elements.libraryStatus.textContent = "Unavailable";
@@ -693,6 +751,20 @@
     }
   }
 
+  async function handlePopState() {
+    const requestedSlug =
+      puzzleRoute()?.slug ||
+      new URLSearchParams(window.location.search).get("puzzle");
+    if (!requestedSlug) {
+      showGallery(false);
+      return;
+    }
+    const requested = library.find((puzzle) => puzzle.slug === requestedSlug);
+    if (requested && requested.slug !== activeSlug) {
+      await openPuzzle(requested);
+    }
+  }
+
   elements.checkButton.addEventListener("click", () => {
     checkPuzzle();
     focusForTyping();
@@ -705,11 +777,12 @@
     resetPuzzle();
     focusForTyping();
   });
-  elements.galleryButton.addEventListener("click", showGallery);
+  elements.galleryButton.addEventListener("click", goToGallery);
   elements.keyboardInput.addEventListener("beforeinput", handleBeforeInput);
   elements.keyboardInput.addEventListener("input", handleTextInput);
   document.addEventListener("keydown", handleKeydown);
   window.addEventListener("beforeunload", saveProgress);
+  window.addEventListener("popstate", handlePopState);
 
   loadLibrary();
 })();

@@ -18,7 +18,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+Condensed:wght@600&amp;display=swap"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,17 @@
 
       <section class="solver" id="solver" hidden>
         <div class="puzzle-heading">
-          <div>
-            <p class="eyebrow">CROSSWORD</p>
-            <h1 id="puzzle-title">Untitled Crossword</h1>
-            <p class="byline" id="puzzle-author"></p>
+          <div class="puzzle-title-group">
+            <button class="puzzle-back" id="gallery-button" type="button">
+              <span aria-hidden="true">←</span>
+              Puzzles
+            </button>
+            <div class="puzzle-title-copy">
+              <h1 id="puzzle-title">Untitled Crossword</h1>
+              <p class="byline" id="puzzle-author"></p>
+            </div>
           </div>
           <div class="puzzle-actions">
-            <button class="button button-quiet" id="gallery-button" type="button">
-              <span class="wide-label">All puzzles</span>
-              <span class="narrow-label">Puzzles</span>
-            </button>
             <div class="timer" id="timer" aria-label="Elapsed time">0:00</div>
             <button class="button button-quiet" id="check-button" type="button">
               Check
@@ -105,7 +106,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="puz.js"></script>
-    <script src="app.js"></script>
+    <script src="/puz.js"></script>
+    <script src="/app.js"></script>
   </body>
 </html>
