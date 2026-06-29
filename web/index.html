@@ -96,37 +96,6 @@
               aria-label="Crossword grid"
               tabindex="0"
             ></div>
-            <div class="clue-dock" id="clue-dock">
-              <button
-                class="clue-nav"
-                id="prev-clue"
-                type="button"
-                aria-label="Previous clue"
-              >
-                <span aria-hidden="true">‹</span>
-              </button>
-              <div class="current-clue" id="current-clue" aria-live="polite"></div>
-              <button
-                class="clue-nav"
-                id="next-clue"
-                type="button"
-                aria-label="Next clue"
-              >
-                <span aria-hidden="true">›</span>
-              </button>
-              <input
-                class="keyboard-input"
-                id="keyboard-input"
-                type="text"
-                inputmode="text"
-                autocomplete="off"
-                autocapitalize="characters"
-                autocorrect="off"
-                enterkeyhint="next"
-                spellcheck="false"
-                aria-label="Crossword letter input"
-              />
-            </div>
             <p class="keyboard-help">
               Arrow keys move · Space or Enter changes direction · Tab skips clues
             </p>
@@ -142,6 +111,38 @@
               <ol class="clue-list" id="down-clues"></ol>
             </section>
           </aside>
+        </div>
+
+        <div class="clue-dock" id="clue-dock">
+          <button
+            class="clue-nav"
+            id="prev-clue"
+            type="button"
+            aria-label="Previous clue"
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+          <div class="current-clue" id="current-clue" aria-live="polite"></div>
+          <button
+            class="clue-nav"
+            id="next-clue"
+            type="button"
+            aria-label="Next clue"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+          <input
+            class="keyboard-input"
+            id="keyboard-input"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            autocapitalize="characters"
+            autocorrect="off"
+            enterkeyhint="done"
+            spellcheck="false"
+            aria-label="Crossword letter input"
+          />
         </div>
       </section>
     </main>

@@ -81,6 +81,80 @@
   let activeSlug = null;
   let timerInterval = null;
   let toastTimeout = null;
+  let mobileViewportBound = false;
+  const mobileLayoutQuery = window.matchMedia("(max-width: 760px)");
+
+  function syncMobileViewport() {
+    if (!mobileLayoutQuery.matches || !document.body.classList.contains("is-solving")) {
+      return;
+    }
+    const viewport = window.visualViewport;
+    const layoutHeight = window.innerHeight;
+    const visibleHeight = viewport ? viewport.height : layoutHeight;
+    const offsetTop = viewport ? viewport.offsetTop : 0;
+    const keyboardInset = Math.max(0, layoutHeight - visibleHeight - offsetTop);
+
+    document.documentElement.style.setProperty(
+      "--visible-viewport-height",
+      `${visibleHeight}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--visible-viewport-offset-top",
+      `${offsetTop}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--keyboard-inset",
+      `${keyboardInset}px`,
+    );
+
+    const heading = elements.solver.querySelector(".puzzle-heading");
+    if (heading) {
+      document.documentElement.style.setProperty(
+        "--solver-heading-height",
+        `${Math.ceil(heading.getBoundingClientRect().height)}px`,
+      );
+    }
+  }
+
+  function onMobileViewportChange() {
+    syncMobileViewport();
+  }
+
+  function bindMobileViewport() {
+    if (mobileViewportBound || !mobileLayoutQuery.matches) {
+      return;
+    }
+    mobileViewportBound = true;
+    syncMobileViewport();
+    window.visualViewport?.addEventListener("resize", onMobileViewportChange);
+    window.visualViewport?.addEventListener("scroll", onMobileViewportChange);
+    window.addEventListener("resize", onMobileViewportChange);
+    window.addEventListener("orientationchange", onMobileViewportChange);
+  }
+
+  function unbindMobileViewport() {
+    if (!mobileViewportBound) {
+      return;
+    }
+    mobileViewportBound = false;
+    window.visualViewport?.removeEventListener("resize", onMobileViewportChange);
+    window.visualViewport?.removeEventListener("scroll", onMobileViewportChange);
+    window.removeEventListener("resize", onMobileViewportChange);
+    window.removeEventListener("orientationchange", onMobileViewportChange);
+    document.documentElement.style.removeProperty("--visible-viewport-height");
+    document.documentElement.style.removeProperty("--visible-viewport-offset-top");
+    document.documentElement.style.removeProperty("--keyboard-inset");
+    document.documentElement.style.removeProperty("--solver-heading-height");
+  }
+
+  function scheduleMobileViewportSync() {
+    if (!mobileLayoutQuery.matches) {
+      return;
+    }
+    requestAnimationFrame(syncMobileViewport);
+    window.setTimeout(syncMobileViewport, 120);
+    window.setTimeout(syncMobileViewport, 320);
+  }
 
   function showToast(message) {
     elements.toast.textContent = message;
@@ -94,7 +168,9 @@
   function focusForTyping() {
     if (window.matchMedia("(pointer: coarse)").matches) {
       elements.keyboardInput.value = "";
+      window.scrollTo(0, 0);
       elements.keyboardInput.focus({ preventScroll: true });
+      scheduleMobileViewportSync();
     } else {
       elements.grid.focus({ preventScroll: true });
     }
@@ -256,6 +332,8 @@
     elements.welcome.hidden = true;
     elements.solver.hidden = false;
     window.scrollTo({ top: 0, behavior: "auto" });
+    bindMobileViewport();
+    scheduleMobileViewportSync();
     updateGrid();
   }
 
@@ -327,6 +405,7 @@
       const clue = document.createElement("span");
       number.className = "current-clue-number";
       number.textContent = `${activeEntry.number}${activeEntry.direction[0]}`;
+      clue.className = "current-clue-text";
       clue.textContent = activeEntry.clue;
       elements.currentClue.replaceChildren(number, clue);
       if (window.matchMedia("(min-width: 1041px)").matches) {
@@ -627,6 +706,7 @@
     }
     elements.keyboardInput.blur();
     elements.keyboardInput.value = "";
+    unbindMobileViewport();
     document.body.classList.remove("is-solving");
     elements.solver.hidden = true;
     elements.welcome.hidden = false;
@@ -806,6 +886,8 @@
   });
   elements.keyboardInput.addEventListener("beforeinput", handleBeforeInput);
   elements.keyboardInput.addEventListener("input", handleTextInput);
+  elements.keyboardInput.addEventListener("focus", scheduleMobileViewportSync);
+  elements.keyboardInput.addEventListener("blur", scheduleMobileViewportSync);
   document.addEventListener("keydown", handleKeydown);
   window.addEventListener("beforeunload", saveProgress);
   window.addEventListener("popstate", handlePopState);
