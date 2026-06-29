@@ -1,0 +1,149 @@
+{
+  "title": "Autocomplete",
+  "author": "Thomas Carriero",
+  "copyright": "2026 Thomas Carriero",
+  "size": {
+    "rows": 15,
+    "columns": 15
+  },
+  "intended_difficulty": "Monday",
+  "theme": {
+    "summary": "TRAINING, AGENT, and PROMPT begin three long answers and are all concepts associated with GENERATIVE AI.",
+    "entries": [
+      {
+        "answer": "TRAININGCAMP",
+        "length": 12,
+        "clue": "Preseason site for an N.F.L. team",
+        "role": "themer",
+        "theme_word": "TRAINING"
+      },
+      {
+        "answer": "AGENTOFCHANGE",
+        "length": 13,
+        "clue": "One who shakes up the status quo",
+        "role": "themer",
+        "theme_word": "AGENT"
+      },
+      {
+        "answer": "PROMPTPAYMENT",
+        "length": 13,
+        "clue": "Settling a bill without delay",
+        "role": "themer",
+        "theme_word": "PROMPT"
+      },
+      {
+        "answer": "GENERATIVEAI",
+        "length": 12,
+        "clue": "Technology that made this very puzzle ... or a hint to the starts of 20-, 28- and 50-Across",
+        "role": "revealer"
+      }
+    ]
+  },
+  "grid": [
+    "SPARS#ASPS#TAFT",
+    "ARROW#CHAT#AVER",
+    "MOTTO#AURA#LIRA",
+    "###TRAININGCAMP",
+    "SILENT##ADO#TIS",
+    "AGENTOFCHANGE##",
+    "ION#OMAR#TEE###",
+    "DRAW##REM##TOWN",
+    "###ARE#SAND#PEA",
+    "##PROMPTPAYMENT",
+    "ADA#ABE##MEANTO",
+    "GENERATIVEAI###",
+    "NEAL#SUMO#BLEND",
+    "ERMA#SLOW#LEVAR",
+    "SEAL#YAKS#ERASE"
+  ],
+  "clues": {
+    "Across": [
+      {"number": 1, "answer": "SPARS", "clue": "Trades practice punches"},
+      {"number": 6, "answer": "ASPS", "clue": "Snakes of the Nile"},
+      {"number": 10, "answer": "TAFT", "clue": "President between Theodore Roosevelt and Wilson"},
+      {"number": 14, "answer": "ARROW", "clue": "Cupid's projectile"},
+      {"number": 15, "answer": "CHAT", "clue": "Casual conversation"},
+      {"number": 16, "answer": "AVER", "clue": "State firmly"},
+      {"number": 17, "answer": "MOTTO", "clue": "\"Semper fi,\" for the Marines"},
+      {"number": 18, "answer": "AURA", "clue": "Distinctive vibe"},
+      {"number": 19, "answer": "LIRA", "clue": "Italy's pre-euro currency"},
+      {"number": 20, "answer": "TRAININGCAMP", "clue": "Preseason site for an N.F.L. team"},
+      {"number": 23, "answer": "SILENT", "clue": "Like the \"k\" in \"knee\""},
+      {"number": 26, "answer": "ADO", "clue": "\"Much ___ About Nothing\""},
+      {"number": 27, "answer": "TIS", "clue": "\"___ the season ...\""},
+      {"number": 28, "answer": "AGENTOFCHANGE", "clue": "One who shakes up the status quo"},
+      {"number": 32, "answer": "ION", "clue": "Charged particle"},
+      {"number": 33, "answer": "OMAR", "clue": "Actor Epps of \"House\""},
+      {"number": 34, "answer": "TEE", "clue": "Golf ball's perch"},
+      {"number": 35, "answer": "DRAW", "clue": "Tie game"},
+      {"number": 37, "answer": "REM", "clue": "Sleep stage when dreams occur, for short"},
+      {"number": 39, "answer": "TOWN", "clue": "Smallish municipality"},
+      {"number": 43, "answer": "ARE", "clue": "\"How ___ you?\""},
+      {"number": 46, "answer": "SAND", "clue": "Hourglass filler"},
+      {"number": 49, "answer": "PEA", "clue": "Tiny green veggie in a pod"},
+      {"number": 50, "answer": "PROMPTPAYMENT", "clue": "Settling a bill without delay"},
+      {"number": 53, "answer": "ADA", "clue": "Computing pioneer Lovelace"},
+      {"number": 55, "answer": "ABE", "clue": "Honest ___ (presidential nickname)"},
+      {"number": 56, "answer": "MEANTO", "clue": "\"I didn't ___ do it!\""},
+      {"number": 57, "answer": "GENERATIVEAI", "clue": "Technology that made this very puzzle ... or a hint to the starts of 20-, 28- and 50-Across"},
+      {"number": 61, "answer": "NEAL", "clue": "Sci-fi novelist Stephenson"},
+      {"number": 62, "answer": "SUMO", "clue": "Japanese wrestling style"},
+      {"number": 63, "answer": "BLEND", "clue": "Mix together"},
+      {"number": 67, "answer": "ERMA", "clue": "Humorist Bombeck"},
+      {"number": 68, "answer": "SLOW", "clue": "Like molasses in January"},
+      {"number": 69, "answer": "LEVAR", "clue": "Burton of \"Reading Rainbow\""},
+      {"number": 70, "answer": "SEAL", "clue": "Envelope closer"},
+      {"number": 71, "answer": "YAKS", "clue": "Shaggy Himalayan beasts"},
+      {"number": 72, "answer": "ERASE", "clue": "Wipe clean"}
+    ],
+    "Down": [
+      {"number": 1, "answer": "SAM", "clue": "Uncle ___ (U.S. symbol)"},
+      {"number": 2, "answer": "PRO", "clue": "Con's counterpart"},
+      {"number": 3, "answer": "ART", "clue": "Louvre display"},
+      {"number": 4, "answer": "ROTTEN", "clue": "Spoiled, as fruit"},
+      {"number": 5, "answer": "SWORNTO", "clue": "___ secrecy"},
+      {"number": 6, "answer": "ACAI", "clue": "Berry in a purple smoothie bowl"},
+      {"number": 7, "answer": "SHUN", "clue": "Steer clear of"},
+      {"number": 8, "answer": "PARIAH", "clue": "Social outcast"},
+      {"number": 9, "answer": "STANDAT", "clue": "___ attention"},
+      {"number": 10, "answer": "TALC", "clue": "Baby powder mineral"},
+      {"number": 11, "answer": "AVIATE", "clue": "Pilot a plane"},
+      {"number": 12, "answer": "FERMI", "clue": "Physicist Enrico"},
+      {"number": 13, "answer": "TRAPS", "clue": "Devices for catching mice"},
+      {"number": 21, "answer": "ATOM", "clue": "Smallest bit of an element"},
+      {"number": 22, "answer": "GONE", "clue": "\"___ with the Wind\""},
+      {"number": 23, "answer": "SAID", "clue": "Uttered"},
+      {"number": 24, "answer": "IGOR", "clue": "Stereotypical mad scientist's assistant"},
+      {"number": 25, "answer": "LENA", "clue": "Actress Dunham or singer Horne"},
+      {"number": 29, "answer": "FAR", "clue": "Opposite of near"},
+      {"number": 30, "answer": "CREST", "clue": "Colgate competitor"},
+      {"number": 31, "answer": "GET", "clue": "Comprehend"},
+      {"number": 36, "answer": "WAR", "clue": "\"___ and Peace\""},
+      {"number": 38, "answer": "MAP", "clue": "Atlas page"},
+      {"number": 40, "answer": "OPEN", "clue": "Ready for business"},
+      {"number": 41, "answer": "WENT", "clue": "Departed"},
+      {"number": 42, "answer": "NATO", "clue": "Brussels-based defense org."},
+      {"number": 44, "answer": "ROAR", "clue": "Lion's bellow"},
+      {"number": 45, "answer": "EMBASSY", "clue": "Ambassador's workplace"},
+      {"number": 47, "answer": "NAME", "clue": "\"Hello, my ___ is ...\""},
+      {"number": 48, "answer": "DYEABLE", "clue": "Able to take a new color, as hair or Easter eggs"},
+      {"number": 50, "answer": "PANAMA", "clue": "Central American country with a famous canal"},
+      {"number": 51, "answer": "PETULA", "clue": "Singer Clark with the 1965 hit \"Downtown\""},
+      {"number": 52, "answer": "MAILER", "clue": "Author Norman"},
+      {"number": 53, "answer": "AGNES", "clue": "Gru's youngest daughter in the \"Despicable Me\" movies"},
+      {"number": 54, "answer": "DEERE", "clue": "Tractor maker John"},
+      {"number": 58, "answer": "ELAL", "clue": "Israeli airline"},
+      {"number": 59, "answer": "IMOK", "clue": "\"Don't worry about me\""},
+      {"number": 60, "answer": "VOWS", "clue": "Wedding promises"},
+      {"number": 64, "answer": "EVA", "clue": "Longoria of \"Desperate Housewives\""},
+      {"number": 65, "answer": "NAS", "clue": "Rapper with the 1994 classic \"Illmatic\""},
+      {"number": 66, "answer": "DRE", "clue": "Dr. ___ of hip-hop"}
+    ]
+  },
+  "source_notes": [
+    {
+      "entry": "PUZZLE",
+      "note": "Reconstructed from the constructor's original numbered blank grid and clue PDF; every answer was verified through crossings."
+    }
+  ]
+}

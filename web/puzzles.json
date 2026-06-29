@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "autocomplete",
+    "title": "Autocomplete",
+    "author": "Thomas Carriero",
+    "difficulty": "Monday",
+    "size": "15×15",
+    "description": "A technology-themed crossword about the ingredients behind generative AI.",
+    "file": "puzzles/Autocomplete.puz"
+  },
+  {
+    "slug": "ai-generated",
+    "title": "AI Generated",
+    "author": "Thomas Carriero",
+    "difficulty": "Monday",
+    "size": "15×15",
+    "description": "Familiar expressions get a small edit that quite literally generates AI.",
+    "file": "puzzles/AI_Generated.puz"
+  }
+]

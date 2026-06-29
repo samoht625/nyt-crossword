@@ -1,0 +1,47 @@
+[project]
+name = "crossword-tools"
+version = "0.1.0"
+description = "Reusable crossword construction, validation, and export tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "puzpy>=0.6.1",
+    "reportlab>=5.0.0",
+]
+
+[project.optional-dependencies]
+construction = [
+    "names>=0.3.0",
+    "wordfreq>=3.1.1",
+    "z3-solver>=4.16.0.0",
+]
+blacksquare = [
+    "blacksquare>=0.9.0",
+    "names>=0.3.0",
+    "wordfreq>=3.1.1",
+    "z3-solver>=4.16.0.0",
+]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[project.scripts]
+crossword-validate = "crossword_tools.validate:main"
+crossword-export = "crossword_tools.export:main"
+crossword-construct = "crossword_tools.construct:main"
+crossword-fill = "crossword_tools.fill:main"
+crossword-fill-blacksquare = "crossword_tools.fill_blacksquare:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+package = true
+
+[tool.setuptools]
+packages = ["crossword_tools", "scripts"]
+
+[tool.setuptools.package-dir]
+crossword_tools = "src/crossword_tools"
+scripts = "scripts"

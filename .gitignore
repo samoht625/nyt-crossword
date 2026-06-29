@@ -1,0 +1,21 @@
+.DS_Store
+.cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Local construction attempts and private submission material.
+scratch/
+private/
+submission/
+
+# Generated exports are rebuilt from canonical puzzle sources.
+exports/
+puzzles/*/exports/
+
+# Local site and test output.
+.coverage
+htmlcov/

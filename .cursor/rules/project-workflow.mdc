@@ -1,0 +1,16 @@
+---
+description: Canonical crossword sources, generated assets, and privacy rules
+alwaysApply: true
+---
+
+# Crossword repository workflow
+
+- Treat `puzzles/*/puzzle.json` as canonical. Never edit an export as source.
+- Validate every changed puzzle with `uv run crossword-validate <path>`.
+- Regenerate its `web/puzzles/*.puz` file after changing a canonical puzzle.
+- Keep `web/puzzles.json` synchronized with bundled puzzle assets.
+- Write construction candidates only to ignored `scratch/`.
+- Never commit contact details, submission forms, private PDFs, caches, or raw
+  construction attempts.
+- Run `uv run pytest` before committing.
+- Review the complete staged file list for puzzle spoilers and sensitive data.
