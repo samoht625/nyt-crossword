@@ -16,5 +16,14 @@
     "size": "15×15",
     "description": "Familiar expressions get a small edit that quite literally generates AI.",
     "file": "puzzles/AI_Generated.puz"
+  },
+  {
+    "slug": "background-check",
+    "title": "Background Check",
+    "author": "Thomas Carriero",
+    "difficulty": "Sunday",
+    "size": "21×21",
+    "description": "Familiar phrases put fictional agents in the background, with a Cursor feature revealing why.",
+    "file": "puzzles/Background_Check.puz"
   }
 ]

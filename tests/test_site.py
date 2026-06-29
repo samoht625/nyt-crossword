@@ -14,8 +14,11 @@ def test_site_manifest_points_to_valid_puzzles() -> None:
     assert {item["slug"] for item in manifest} == {
         "ai-generated",
         "autocomplete",
+        "background-check",
     }
     for item in manifest:
         puzzle_path = web / item["file"]
         assert puzzle_path.is_file()
-        assert puz.read(str(puzzle_path)).title == item["title"]
+        puzzle = puz.read(str(puzzle_path))
+        assert puzzle.title == item["title"]
+        assert f"{puzzle.width}×{puzzle.height}" == item["size"]

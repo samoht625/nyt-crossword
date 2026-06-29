@@ -281,6 +281,7 @@ def main() -> None:
     parser.add_argument("--node-limit", type=int, default=500_000)
     parser.add_argument("--wordfreq-limit", type=int, default=120_000)
     parser.add_argument("--constructor-min-score", type=int, default=75)
+    parser.add_argument("--allow-word", action="append", default=[])
     parser.add_argument("--common-only", action="store_true")
     parser.add_argument("--marginal-budget", type=int)
     args = parser.parse_args()
@@ -288,6 +289,10 @@ def main() -> None:
     construct.configure(
         construct.load_construction_spec(Path(args.config))
     )
+    allowed_words = {word.upper() for word in args.allow_word}
+    construct.EXTRA_WORDS.update(allowed_words)
+    construct.BLOCKLIST.difference_update(allowed_words)
+    construct.NOISY_TOKENS.difference_update(allowed_words)
     quality_lexicon = construct.Lexicon(
         limit=args.wordfreq_limit,
         constructor_min_score=args.constructor_min_score,
@@ -324,7 +329,7 @@ def main() -> None:
             args.seed,
             args.pattern_attempts,
             args.patterns,
-            quality_lexicon,
+            lexicon,
             args.blocks,
             args.words,
             True,

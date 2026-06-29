@@ -1,0 +1,308 @@
+{
+  "title": "Background Check",
+  "author": "Thomas Carriero",
+  "copyright": "2026 Thomas Carriero",
+  "size": {
+    "rows": 21,
+    "columns": 21
+  },
+  "intended_difficulty": "Sunday",
+  "theme": {
+    "summary": "Six starred phrases end with the surnames of fictional agents, placing those agents in the background.",
+    "entries": [
+      {
+        "answer": "SCAVENGERHUNT",
+        "length": 13,
+        "clue": "*Search game with a list of items to find",
+        "role": "themer",
+        "agent": "Ethan Hunt"
+      },
+      {
+        "answer": "COVALENTBOND",
+        "length": 12,
+        "clue": "*Chemical link formed by sharing electrons",
+        "role": "themer",
+        "agent": "James Bond"
+      },
+      {
+        "answer": "KOSHERSALT",
+        "length": 10,
+        "clue": "*Coarse-grained seasoning favored for dry brining",
+        "role": "themer",
+        "agent": "Evelyn Salt"
+      },
+      {
+        "answer": "BACKGROUNDAGENT",
+        "length": 15,
+        "clue": "Cursor's remote coding feature ... or a hint to the fictional-agent surnames at the backs of the six starred answers",
+        "role": "revealer"
+      },
+      {
+        "answer": "FLYINGSOLO",
+        "length": 10,
+        "clue": "*Going it alone",
+        "role": "themer",
+        "agent": "Napoleon Solo"
+      },
+      {
+        "answer": "AMERICANWEST",
+        "length": 12,
+        "clue": "*Setting of many a frontier tale",
+        "role": "themer",
+        "agent": "Jim West"
+      },
+      {
+        "answer": "MIDDLEENGLISH",
+        "length": 13,
+        "clue": "*Language of Chaucer's \"Canterbury Tales\"",
+        "role": "themer",
+        "agent": "Johnny English"
+      }
+    ]
+  },
+  "grid": [
+    "ARTFORM##OSSE#PREQUEL",
+    "DEVALUE#BOTOX#LARUSSA",
+    "SCAVENGERHUNT#AIRIEST",
+    "####ABAYA#CYS#INATREE",
+    "##PARAMEDIC##INONE###",
+    "DERBYDAY#COVALENTBOND",
+    "ILEUS#LOMA#FLOR##AVER",
+    "RISD#ELGIN#WAV#MODULE",
+    "KOSHERSALT##NEROL#LLD",
+    "##TALE##ENDO#LADDIE##",
+    "###BACKGROUNDAGENT###",
+    "##TIPTOE#WHEE##RAIN##",
+    "ABE#SLATS##FLYINGSOLO",
+    "POMPEY#GTO#ILANA#DRUB",
+    "POPE##HOOK#FACT#CORGI",
+    "AMERICANWEST#HEDONIST",
+    "###USAGE##THATRULES##",
+    "ERASING#ABU#LICNO####",
+    "LORETTA#MIDDLEENGLISH",
+    "INARMOR#PRICY#PENUCHE",
+    "MISSEND#MOOS##TREMAIN"
+  ],
+  "clues": {
+    "Across": [
+      {"number": 1, "answer": "ARTFORM", "clue": "Medium of creative expression"},
+      {"number": 8, "answer": "OSSE", "clue": "River of southwestern France that feeds the Gélise"},
+      {"number": 12, "answer": "PREQUEL", "clue": "Story set before an earlier installment"},
+      {"number": 19, "answer": "DEVALUE", "clue": "Reduce the worth of"},
+      {"number": 20, "answer": "BOTOX", "clue": "Injection that may smooth forehead lines"},
+      {"number": 21, "answer": "LARUSSA", "clue": "Hall of Fame manager Tony"},
+      {"number": 22, "answer": "SCAVENGERHUNT", "clue": "*Search game with a list of items to find"},
+      {"number": 24, "answer": "AIRIEST", "clue": "Least stuffy, as a room"},
+      {"number": 25, "answer": "ABAYA", "clue": "Loose overgarment worn by some Muslim women"},
+      {"number": 26, "answer": "CYS", "clue": "Young and Twombly, familiarly"},
+      {"number": 27, "answer": "INATREE", "clue": "Where a birdhouse might be"},
+      {"number": 28, "answer": "PARAMEDIC", "clue": "First responder with advanced medical training"},
+      {"number": 31, "answer": "INONE", "clue": "___ fell swoop"},
+      {"number": 32, "answer": "DERBYDAY", "clue": "Mint-julep occasion at Churchill Downs"},
+      {"number": 34, "answer": "COVALENTBOND", "clue": "*Chemical link formed by sharing electrons"},
+      {"number": 40, "answer": "ILEUS", "clue": "Temporary stoppage of intestinal movement"},
+      {"number": 41, "answer": "LOMA", "clue": "\"Hill,\" in Spanish"},
+      {"number": 43, "answer": "FLOR", "clue": "Yeast layer atop aging fino sherry"},
+      {"number": 44, "answer": "AVER", "clue": "State as fact"},
+      {"number": 45, "answer": "RISD", "clue": "Providence art school, for short"},
+      {"number": 46, "answer": "ELGIN", "clue": "Illinois city once famed for its watches"},
+      {"number": 47, "answer": "WAV", "clue": "Audio-file extension"},
+      {"number": 48, "answer": "MODULE", "clue": "Self-contained part of a course or system"},
+      {"number": 50, "answer": "KOSHERSALT", "clue": "*Coarse-grained seasoning favored for dry brining"},
+      {"number": 52, "answer": "NEROL", "clue": "Rose-scented alcohol used in perfumery"},
+      {"number": 54, "answer": "LLD", "clue": "Doctor of Laws degree: Abbr."},
+      {"number": 55, "answer": "TALE", "clue": "Story spun by a raconteur"},
+      {"number": 56, "answer": "ENDO", "clue": "Within: Prefix"},
+      {"number": 59, "answer": "LADDIE", "clue": "Young fellow, in Scotland"},
+      {"number": 61, "answer": "BACKGROUNDAGENT", "clue": "Cursor's remote coding feature ... or a hint to the fictional-agent surnames at the backs of the six starred answers"},
+      {"number": 65, "answer": "TIPTOE", "clue": "Move with barely a sound"},
+      {"number": 66, "answer": "WHEE", "clue": "Roller-coaster cry"},
+      {"number": 67, "answer": "RAIN", "clue": "Cause of a picnic postponement, perhaps"},
+      {"number": 69, "answer": "ABE", "clue": "Face on a five, familiarly"},
+      {"number": 71, "answer": "SLATS", "clue": "Venetian blind pieces"},
+      {"number": 73, "answer": "FLYINGSOLO", "clue": "*Going it alone"},
+      {"number": 78, "answer": "POMPEY", "clue": "Roman general known as \"the Great\""},
+      {"number": 80, "answer": "GTO", "clue": "Pontiac muscle car model"},
+      {"number": 82, "answer": "ILANA", "clue": "Glazer of \"Broad City\""},
+      {"number": 83, "answer": "DRUB", "clue": "Defeat decisively"},
+      {"number": 84, "answer": "POPE", "clue": "One elected in the Sistine Chapel"},
+      {"number": 85, "answer": "HOOK", "clue": "What catches a fish ... or a reader"},
+      {"number": 86, "answer": "FACT", "clue": "Something checked by a journalist"},
+      {"number": 87, "answer": "CORGI", "clue": "Low-slung herding dog"},
+      {"number": 88, "answer": "AMERICANWEST", "clue": "*Setting of many a frontier tale"},
+      {"number": 92, "answer": "HEDONIST", "clue": "Devotee of pleasure"},
+      {"number": 94, "answer": "USAGE", "clue": "How a word is conventionally employed"},
+      {"number": 95, "answer": "THATRULES", "clue": "\"Awesome!\""},
+      {"number": 97, "answer": "ERASING", "clue": "Undoing pencil work"},
+      {"number": 100, "answer": "ABU", "clue": "___ Dhabi"},
+      {"number": 102, "answer": "LICNO", "clue": "License number, on a form: Abbr."},
+      {"number": 103, "answer": "LORETTA", "clue": "Country legend Lynn"},
+      {"number": 104, "answer": "MIDDLEENGLISH", "clue": "*Language of Chaucer's \"Canterbury Tales\""},
+      {"number": 110, "answer": "INARMOR", "clue": "Dressed for a joust"},
+      {"number": 111, "answer": "PRICY", "clue": "Hard on the wallet"},
+      {"number": 112, "answer": "PENUCHE", "clue": "Brown-sugar fudge"},
+      {"number": 113, "answer": "MISSEND", "clue": "Direct to the wrong recipient, as an email"},
+      {"number": 114, "answer": "MOOS", "clue": "Barnyard bellows"},
+      {"number": 115, "answer": "TREMAIN", "clue": "Novelist Rose of \"Restoration\""}
+    ],
+    "Down": [
+      {"number": 1, "answer": "ADS", "clue": "Madison Avenue output, briefly"},
+      {"number": 2, "answer": "REC", "clue": "Parks and ___"},
+      {"number": 3, "answer": "TVA", "clue": "New Deal power org."},
+      {"number": 4, "answer": "FAV", "clue": "Top pick, in texts"},
+      {"number": 5, "answer": "OLEARYS", "clue": "Mrs. ___ cow, in Chicago lore"},
+      {"number": 6, "answer": "RUNBAD", "clue": "Hit a streak of rotten luck, in poker lingo"},
+      {"number": 7, "answer": "MEGAMALLS", "clue": "Sprawling shopping centers"},
+      {"number": 8, "answer": "OOH", "clue": "\"Look at that!\""},
+      {"number": 9, "answer": "STUCCO", "clue": "Textured exterior coating"},
+      {"number": 10, "answer": "SONY", "clue": "PlayStation maker"},
+      {"number": 11, "answer": "EXTS", "clue": "Telephone extensions: Abbr."},
+      {"number": 12, "answer": "PLAINER", "clue": "Less fancy"},
+      {"number": 13, "answer": "RAINON", "clue": "Spoil the plans of, metaphorically"},
+      {"number": 14, "answer": "ERRANT", "clue": "Straying from the proper course"},
+      {"number": 15, "answer": "QUITEBAD", "clue": "Far from satisfactory"},
+      {"number": 16, "answer": "USER", "clue": "Person behind a login"},
+      {"number": 17, "answer": "ESSE", "clue": "\"To be,\" in Latin"},
+      {"number": 18, "answer": "LATE", "clue": "No longer on time"},
+      {"number": 20, "answer": "BRAD", "clue": "Small-headed finishing nail"},
+      {"number": 23, "answer": "EYEYOGA", "clue": "Practice of palming and deliberate gaze shifts"},
+      {"number": 28, "answer": "PRESST", "clue": "\"___ to open chat,\" in Minecraft"},
+      {"number": 29, "answer": "ABUDHABI", "clue": "Capital of the United Arab Emirates"},
+      {"number": 30, "answer": "ICANTNOW", "clue": "\"Ask me later!\""},
+      {"number": 31, "answer": "ILOVELA", "clue": "Randy Newman song that declares \"We love it!\""},
+      {"number": 32, "answer": "DIRK", "clue": "Nowitzki of the N.B.A."},
+      {"number": 33, "answer": "ELIO", "clue": "Pixar title boy mistaken for Earth's leader"},
+      {"number": 35, "answer": "VFW", "clue": "Org. with veterans' halls"},
+      {"number": 36, "answer": "ALAN", "clue": "Turing or Rickman"},
+      {"number": 37, "answer": "OVULE", "clue": "Seed precursor in a flower"},
+      {"number": 38, "answer": "NELL", "clue": "Dickens's Little ___"},
+      {"number": 39, "answer": "DRED", "clue": "___ Scott, plaintiff in an infamous Supreme Court case"},
+      {"number": 42, "answer": "MILER", "clue": "Runner in a four-lap race, roughly"},
+      {"number": 46, "answer": "ERECTLY", "clue": "In an upright posture"},
+      {"number": 48, "answer": "MODERNA", "clue": "Maker of an mRNA COVID-19 vaccine"},
+      {"number": 49, "answer": "OLDNAG", "clue": "Broken-down horse, disparagingly"},
+      {"number": 51, "answer": "ELAPSE", "clue": "Pass, as time"},
+      {"number": 53, "answer": "RAG", "clue": "Tease relentlessly"},
+      {"number": 57, "answer": "DUH", "clue": "\"Obviously!\""},
+      {"number": 58, "answer": "ONEFIFTH", "clue": "Twenty percent"},
+      {"number": 60, "answer": "ITISDONE", "clue": "\"Mission accomplished\""},
+      {"number": 62, "answer": "KOA", "clue": "Hawaiian wood used for ukuleles"},
+      {"number": 63, "answer": "GETGONE", "clue": "\"Scram!\""},
+      {"number": 64, "answer": "DELLA", "clue": "Singer and actress Reese"},
+      {"number": 65, "answer": "TEMPE", "clue": "Arizona home of A.S.U.'s main campus"},
+      {"number": 68, "answer": "NORRIS", "clue": "Chuck of \"Walker, Texas Ranger\""},
+      {"number": 69, "answer": "APPA", "clue": "Aang's flying bison on \"Avatar: The Last Airbender\""},
+      {"number": 70, "answer": "BOOM", "clue": "Sonic ___"},
+      {"number": 72, "answer": "STOW", "clue": "Pack away"},
+      {"number": 74, "answer": "YACHTIE", "clue": "One who sails or owns a yacht, informally"},
+      {"number": 75, "answer": "INTERCEPT", "clue": "Pick off a quarterback's pass, say"},
+      {"number": 76, "answer": "LUGS", "clue": "Hauls with effort"},
+      {"number": 77, "answer": "OBIT", "clue": "Newspaper remembrance, for short"},
+      {"number": 79, "answer": "PERUSERS", "clue": "Those examining closely"},
+      {"number": 81, "answer": "OKE", "clue": "Old Ottoman unit equal to 400 dirhems"},
+      {"number": 85, "answer": "HAGGARD", "clue": "Gaunt from exhaustion"},
+      {"number": 87, "answer": "COLOGNE", "clue": "German city on the Rhine"},
+      {"number": 89, "answer": "ISITME", "clue": "Self-doubter's question"},
+      {"number": 90, "answer": "CANTON", "clue": "Swiss subdivision"},
+      {"number": 91, "answer": "STUDIO", "clue": "Artist's workspace"},
+      {"number": 93, "answer": "DUNNER", "clue": "Persistent collector of debts"},
+      {"number": 96, "answer": "ALLY", "clue": "Friend in a fight"},
+      {"number": 97, "answer": "ELIM", "clue": "Biblical oasis with 12 springs"},
+      {"number": 98, "answer": "RONI", "clue": "Rice-A-___"},
+      {"number": 99, "answer": "ARAS", "clue": "River joining the Kura in Azerbaijan"},
+      {"number": 100, "answer": "AMPM", "clue": "Convenience-store chain at many ARCO stations"},
+      {"number": 101, "answer": "BIRO", "clue": "Ballpoint, in Britain"},
+      {"number": 105, "answer": "DCS", "clue": "Direct currents, for short"},
+      {"number": 106, "answer": "LUM", "clue": "Chimney, in Scots"},
+      {"number": 107, "answer": "ICA", "clue": "London's Institute of Contemporary Arts, for short"},
+      {"number": 108, "answer": "SHI", "clue": "Classical Chinese verse form"},
+      {"number": 109, "answer": "HEN", "clue": "Female pheasant"}
+    ]
+  },
+  "source_notes": [
+    {
+      "entry": "BACKGROUNDAGENT",
+      "note": "Cursor Help describes Cloud Agents, formerly Background Agents, as coding agents that run remotely on dedicated virtual machines and can edit, run, and test code."
+    },
+    {
+      "entry": "THEME",
+      "note": "The endings refer to fictional agents Ethan Hunt, Johnny English, James Bond, Jim West, Evelyn Salt, and Napoleon Solo."
+    },
+    {
+      "entry": "OSSE",
+      "note": "France's SANDRE water registry lists the Osse as a 120-kilometer river; it is a tributary of the Gélise."
+    },
+    {
+      "entry": "ILEUS",
+      "note": "Cleveland Clinic defines paralytic ileus as a temporary loss of the intestinal contractions that move food."
+    },
+    {
+      "entry": "FLOR",
+      "note": "Foods and Wines from Spain describes flor as the film-forming yeast layer under which fino and manzanilla sherries age."
+    },
+    {
+      "entry": "NEROL",
+      "note": "Merriam-Webster defines nerol as a rose-scented liquid alcohol used in perfumery."
+    },
+    {
+      "entry": "ESSE",
+      "note": "The Paideia Institute gives esse as the Latin infinitive meaning \"to be.\""
+    },
+    {
+      "entry": "EYEYOGA",
+      "note": "Published descriptions of eye yoga include palming and controlled sideways, rotational, and near-and-far viewing; the clue makes no therapeutic claim."
+    },
+    {
+      "entry": "PRESST",
+      "note": "Minecraft's official controls page says pressing T opens the chat window."
+    },
+    {
+      "entry": "ELIO",
+      "note": "Disney's official synopsis says Elio is beamed to the Communiverse and mistakenly identified as Earth's leader."
+    },
+    {
+      "entry": "YACHTIE",
+      "note": "Merriam-Webster defines a yachtie as a person who sails or owns a yacht."
+    },
+    {
+      "entry": "OKE",
+      "note": "Belleten's account of Ottoman weights gives one okka, or oke, as 400 dirhems."
+    },
+    {
+      "entry": "DUNNER",
+      "note": "Merriam-Webster defines a dunner as someone who persistently demands payment."
+    },
+    {
+      "entry": "ELIM",
+      "note": "Exodus 15:27 describes Elim as an encampment with 12 springs and 70 palm trees."
+    },
+    {
+      "entry": "RONI",
+      "note": "RONI is the final element of the brand name Rice-A-Roni."
+    },
+    {
+      "entry": "ARAS",
+      "note": "Encyclopaedia Britannica describes the Aras as joining the Kura River in Azerbaijan."
+    },
+    {
+      "entry": "BIRO",
+      "note": "Oxford Learner's Dictionaries labels Biro a British term for a ballpoint pen."
+    },
+    {
+      "entry": "LUM",
+      "note": "Dictionaries of the Scots Language defines lum as a chimney, flue, or chimney-stack."
+    },
+    {
+      "entry": "ICA",
+      "note": "The Institute of Contemporary Arts' style guide identifies ICA as its acronym."
+    },
+    {
+      "entry": "SHI",
+      "note": "Key Concepts in Chinese Thought and Culture describes shi as a Chinese poetic form with ancient- and regulated-style branches."
+    },
+    {
+      "entry": "TREMAIN",
+      "note": "Encyclopaedia Britannica identifies Rose Tremain as the novelist of \"Restoration.\""
+    }
+  ]
+}

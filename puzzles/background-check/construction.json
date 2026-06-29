@@ -1,0 +1,58 @@
+{
+  "size": 21,
+  "theme_placements": [
+    {
+      "direction": "Across",
+      "row": 3,
+      "column": 1,
+      "answer": "SCAVENGERHUNT"
+    },
+    {
+      "direction": "Across",
+      "row": 6,
+      "column": 10,
+      "answer": "COVALENTBOND"
+    },
+    {
+      "direction": "Across",
+      "row": 9,
+      "column": 1,
+      "answer": "KOSHERSALT"
+    },
+    {
+      "direction": "Across",
+      "row": 11,
+      "column": 4,
+      "answer": "BACKGROUNDAGENT"
+    },
+    {
+      "direction": "Across",
+      "row": 13,
+      "column": 12,
+      "answer": "FLYINGSOLO"
+    },
+    {
+      "direction": "Across",
+      "row": 16,
+      "column": 1,
+      "answer": "AMERICANWEST"
+    },
+    {
+      "direction": "Across",
+      "row": 19,
+      "column": 9,
+      "answer": "MIDDLEENGLISH"
+    }
+  ],
+  "fixed_blocks": [
+    [3, 14],
+    [6, 9],
+    [9, 11],
+    [11, 3],
+    [11, 19],
+    [13, 11],
+    [16, 13],
+    [19, 8]
+  ],
+  "fixed_open": []
+}

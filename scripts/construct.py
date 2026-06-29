@@ -594,43 +594,44 @@ def pattern_score(grid: list[str]) -> tuple[int, int, int, int, int, int]:
 
 
 def vertical_masks(column: int, lexicon: "Lexicon") -> list[int]:
+    """Enumerate lexically viable column patterns without scanning 2**SIZE masks."""
     masks: list[int] = []
-    for mask in range(1 << SIZE):
-        if any(
-            bool(mask & (1 << row)) != should_block
-            for row in range(SIZE)
-            if (should_block := (
-                True
-                if (row, column) in FIXED_BLOCKS
-                else False
-                if (row, column) in FIXED_LETTERS
-                or (row, column) in FIXED_OPEN
-                else None
-            ))
-            is not None
-        ):
-            continue
-        valid = True
-        row = 0
-        while row < SIZE:
-            if mask & (1 << row):
-                row += 1
-                continue
-            start = row
-            while row < SIZE and not mask & (1 << row):
-                row += 1
-            if not 3 <= row - start <= 11:
-                valid = False
+    must_block = {
+        row for row in range(SIZE) if (row, column) in FIXED_BLOCKS
+    }
+    must_open = {
+        row
+        for row in range(SIZE)
+        if (row, column) in FIXED_LETTERS or (row, column) in FIXED_OPEN
+    }
+
+    def visit(row: int, mask: int) -> None:
+        if row == SIZE:
+            masks.append(mask)
+            return
+
+        # Blocks may occur consecutively. Choosing one leaves the next row at
+        # the start of another block or of a complete open run.
+        if row not in must_open:
+            visit(row + 1, mask | (1 << row))
+
+        # An open run must form a viable three- through eleven-letter entry.
+        for length in range(3, min(11, SIZE - row) + 1):
+            end = row + length
+            if any(value in must_block for value in range(row, end)):
                 break
             pattern = "".join(
                 FIXED_LETTERS.get((value, column), ".")
-                for value in range(start, row)
+                for value in range(row, end)
             )
             if not lexicon.matching(pattern):
-                valid = False
-                break
-        if valid:
-            masks.append(mask)
+                continue
+            if end == SIZE:
+                visit(end, mask)
+            elif end not in must_open:
+                visit(end + 1, mask | (1 << end))
+
+    visit(0, 0)
     return masks
 
 
@@ -650,7 +651,7 @@ def generate_patterns(
     ]
     solver = Solver()
     solver.set("random_seed", seed)
-    solver.set("timeout", 10_000)
+    solver.set("timeout", 60_000 if SIZE > 15 else 10_000)
 
     # Standard 180-degree rotational symmetry.
     for row in range(SIZE):

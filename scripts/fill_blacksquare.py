@@ -62,6 +62,7 @@ def main() -> None:
     parser.add_argument("--output", default="scratch")
     parser.add_argument("--seed", type=int, default=701)
     parser.add_argument("--patterns", type=int, default=250)
+    parser.add_argument("--pattern-json")
     parser.add_argument("--pattern-attempts", type=int, default=2_500)
     parser.add_argument("--blocks", type=int, default=44)
     parser.add_argument("--words", type=int, default=68)
@@ -72,9 +73,10 @@ def main() -> None:
     parser.add_argument("--constructor-min-score", type=int, default=80)
     parser.add_argument("--common-only", action="store_true")
     parser.add_argument("--wordfreq-limit", type=int, default=100_000)
+    parser.add_argument("--allow-word", action="append", default=[])
     parser.add_argument(
         "--word-list",
-        choices=("spread", "curated"),
+        choices=("spread", "hybrid", "curated"),
         default="spread",
     )
     args = parser.parse_args()
@@ -88,16 +90,25 @@ def main() -> None:
         constructor_min_score=args.constructor_min_score,
         common_only=args.common_only,
     )
-    patterns = construct.generate_patterns(
-        args.seed,
-        args.pattern_attempts,
-        args.patterns,
-        topology_lexicon,
-        args.blocks,
-        args.words,
-        True,
-        args.max_nontheme_length,
-    )
+    if args.pattern_json:
+        source = json.loads(Path(args.pattern_json).read_text())
+        patterns = [
+            [
+                "".join("#" if value == "#" else "." for value in row)
+                for row in source["grid"]
+            ]
+        ]
+    else:
+        patterns = construct.generate_patterns(
+            args.seed,
+            args.pattern_attempts,
+            args.patterns,
+            topology_lexicon,
+            args.blocks,
+            args.words,
+            True,
+            args.max_nontheme_length,
+        )
     print(f"Generated {len(patterns)} patterns", flush=True)
     if args.word_list == "curated":
         fill_words = {
@@ -105,11 +116,28 @@ def main() -> None:
             for words in topology_lexicon.by_length.values()
             for word in words
         }
-        fill_word_list = WordList(fill_words)
         fill_score_filter = None
     else:
-        fill_word_list = DEFAULT_WORDLIST
+        allowed = set(topology_lexicon.scores)
+        fill_words = {
+            word: score
+            for word, score in zip(
+                DEFAULT_WORDLIST.words,
+                DEFAULT_WORDLIST.scores,
+                strict=True,
+            )
+            if args.word_list == "spread"
+            or word in allowed
+            or score >= 0.8
+        }
         fill_score_filter = args.score_filter
+    fill_words.update(
+        {answer: 1.0 for answer in construct.THEME_ANSWERS}
+    )
+    fill_words.update(
+        {word.upper(): 1.0 for word in args.allow_word}
+    )
+    fill_word_list = WordList(fill_words)
 
     rng = random.Random(args.seed)
     for index, pattern in enumerate(patterns, start=1):

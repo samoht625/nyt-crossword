@@ -182,6 +182,8 @@ def validate(
 
     if height == width == 15 and len(entries) > 78:
         errors.append(f"word count is {len(entries)}; themed 15x15 maximum is 78")
+    if height == width == 21 and len(entries) > 140:
+        errors.append(f"word count is {len(entries)}; themed 21x21 maximum is 140")
     answers = [entry.answer for entry in entries]
     duplicates = sorted({answer for answer in answers if answers.count(answer) > 1})
     if duplicates:
