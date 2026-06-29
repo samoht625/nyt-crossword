@@ -12,6 +12,8 @@
     timer: document.querySelector("#timer"),
     grid: document.querySelector("#grid"),
     currentClue: document.querySelector("#current-clue"),
+    prevClue: document.querySelector("#prev-clue"),
+    nextClue: document.querySelector("#next-clue"),
     acrossClues: document.querySelector("#across-clues"),
     downClues: document.querySelector("#down-clues"),
     checkButton: document.querySelector("#check-button"),
@@ -778,6 +780,14 @@
     focusForTyping();
   });
   elements.galleryButton.addEventListener("click", goToGallery);
+  elements.prevClue.addEventListener("click", () => {
+    nextEntry(-1);
+    focusForTyping();
+  });
+  elements.nextClue.addEventListener("click", () => {
+    nextEntry(1);
+    focusForTyping();
+  });
   elements.keyboardInput.addEventListener("beforeinput", handleBeforeInput);
   elements.keyboardInput.addEventListener("input", handleTextInput);
   document.addEventListener("keydown", handleKeydown);

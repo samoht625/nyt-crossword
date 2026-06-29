@@ -104,7 +104,8 @@ body.is-solving .site-header {
 .puzzle-card:focus-visible,
 .puzzle-back:focus-visible,
 .cell:focus-visible,
-.clue-button:focus-visible {
+.clue-button:focus-visible,
+.clue-nav:focus-visible {
   outline: 3px solid #2674b8;
   outline-offset: 3px;
 }
@@ -332,6 +333,7 @@ body.is-solving .site-header {
 }
 
 .keyboard-input {
+  /* Legacy selector kept for specificity; input lives in .clue-dock */
   width: 1px;
   height: 1px;
   padding: 0;
@@ -416,6 +418,27 @@ body.is-solving .site-header {
 .current-clue-number {
   flex: none;
   font-weight: 800;
+}
+
+.clue-dock {
+  position: relative;
+}
+
+.clue-nav {
+  display: none;
+}
+
+.clue-dock .keyboard-input {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  font-size: 16px;
+  pointer-events: none;
 }
 
 .keyboard-help {
@@ -539,20 +562,29 @@ body.is-solving .site-header {
     gap: 12px;
   }
 
+  body.is-solving {
+    overflow: hidden;
+  }
+
   .solver {
+    --clue-dock-height: 52px;
     width: 100%;
+    height: 100dvh;
     min-height: 100dvh;
-    padding: max(12px, env(safe-area-inset-top)) 0
-      max(48px, env(safe-area-inset-bottom));
+    padding: max(8px, env(safe-area-inset-top)) 0 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .puzzle-heading {
     width: calc(100% - 28px);
-    margin: 0 auto 12px;
-    padding-bottom: 12px;
+    margin: 0 auto 8px;
+    padding-bottom: 8px;
     align-items: flex-start;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    flex: none;
   }
 
   .puzzle-title-group {
@@ -572,7 +604,7 @@ body.is-solving .site-header {
   }
 
   .puzzle-heading h1 {
-    font-size: clamp(28px, 8vw, 38px);
+    font-size: clamp(22px, 6vw, 32px);
     line-height: 1;
   }
 
@@ -611,17 +643,35 @@ body.is-solving .site-header {
   }
 
   .solver-layout {
+    flex: 1;
+    min-height: 0;
     display: block;
+    overflow: hidden;
   }
 
   .board-column {
+    height: 100%;
+    min-height: 0;
+    padding: 0 14px calc(var(--clue-dock-height) + env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .grid {
+    --grid-max-height: calc(
+      100dvh - 132px - var(--clue-dock-height) - env(safe-area-inset-top) -
+        env(safe-area-inset-bottom)
+    );
+    width: min(
+      100%,
+      calc(var(--grid-max-height) * var(--columns) / var(--rows, 15))
+    );
+    max-height: var(--grid-max-height);
+    height: auto;
     border-width: 2px;
-    order: 0;
+    flex: none;
   }
 
   .cell-number {
@@ -629,17 +679,64 @@ body.is-solving .site-header {
     left: 2px;
   }
 
-  .current-clue {
-    min-height: 54px;
-    margin: 0 0 10px;
-    padding: 10px 14px;
-    border-left: 0;
+  .clue-dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 12;
+    min-height: var(--clue-dock-height);
+    padding-bottom: env(safe-area-inset-bottom);
     border-top: 1px solid #b5d1e8;
-    border-bottom: 1px solid #b5d1e8;
-    position: sticky;
-    top: 0;
-    z-index: 6;
-    order: -1;
+    background: var(--blue-soft);
+    display: flex;
+    align-items: stretch;
+  }
+
+  .clue-nav {
+    width: 48px;
+    min-height: var(--clue-dock-height);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    flex: none;
+    display: grid;
+    place-items: center;
+    color: #2a7cb8;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .clue-nav span {
+    margin-top: -2px;
+  }
+
+  .current-clue {
+    min-height: var(--clue-dock-height);
+    margin: 0;
+    padding: 10px 6px;
+    border: 0;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    text-align: center;
+    line-height: 1.3;
+    font-size: 15px;
+  }
+
+  .current-clue-number {
+    display: none;
+  }
+
+  .clue-dock .keyboard-input {
+    position: absolute;
+    left: 50%;
+    bottom: env(safe-area-inset-bottom);
+    transform: translateX(-50%);
   }
 
   .keyboard-help {
@@ -647,8 +744,11 @@ body.is-solving .site-header {
   }
 
   .clues {
-    padding: 24px 14px 0;
-    grid-template-columns: 1fr;
+    display: none;
+  }
+
+  .toast {
+    bottom: calc(var(--clue-dock-height) + env(safe-area-inset-bottom) + 12px);
   }
 }
 
