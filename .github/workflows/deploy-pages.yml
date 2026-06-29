@@ -1,8 +1,9 @@
-name: Deploy site
+name: Deploy site to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -16,25 +17,66 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    name: Test and deploy
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v7
 
-      - name: Prepare static site
-        run: cp web/index.html web/404.html
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8
+        with:
+          python-version: "3.12"
+          enable-cache: true
 
-      - name: Configure Pages
+      - name: Install test dependencies
+        run: uv sync --locked --extra dev
+
+      - name: Run tests
+        run: uv run pytest
+
+      - name: Configure GitHub Pages
+        id: pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Build Pages artifact
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          uv run python - <<'PY'
+          import json
+          import os
+          import shutil
+          from pathlib import Path
+
+          source = Path("web")
+          output = Path("_site")
+          shutil.copytree(source, output)
+
+          base_path = os.environ["BASE_PATH"].rstrip("/")
+          document = (source / "index.html").read_text()
+          document = document.replace('href="/', f'href="{base_path}/')
+          document = document.replace('src="/', f'src="{base_path}/')
+          (output / "index.html").write_text(document)
+          (output / "404.html").write_text(document)
+          (output / ".nojekyll").touch()
+
+          puzzles = json.loads((source / "puzzles.json").read_text())
+          for puzzle in puzzles:
+              route = output / "puzzle" / puzzle["slug"]
+              route.mkdir(parents=True)
+              (route / "index.html").write_text(document)
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: web
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
